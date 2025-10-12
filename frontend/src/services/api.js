@@ -2,7 +2,7 @@ import axios from "axios";
 
 // สร้าง instance ของ axios พร้อมกำหนดค่าเริ่มต้น
 const apiClient = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://tutor-app-api-ztou.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
