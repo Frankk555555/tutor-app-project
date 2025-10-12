@@ -1,0 +1,198 @@
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: sans-serif;
+}
+
+.admin-dashboard h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-section {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.admin-section h3 {
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+/* --- User Management Table Styles --- */
+table {
+  width: 100%;
+  border-collapse: collapse; /* ทำให้เส้นขอบติดกัน */
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #f8f9fa;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+th {
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1; /* สีพื้นหลังเมื่อเมาส์ชี้ */
+}
+
+.btn-delete {
+  background-color: #dc3545; /* สีแดง */
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: #c82333;
+}
+
+/* --- Subject Management Styles --- */
+.admin-section form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-section input[type="text"] {
+  flex-grow: 1; /* ทำให้ช่อง input ขยายเต็มพื้นที่ */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.admin-section form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-section li {
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+/* ... (CSS เดิม) ... */
+
+/* Styles for Edit Modal Form */
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-edit {
+  background-color: yellow;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap; /* ป้องกันปุ่มขึ้นบรรทัดใหม่ */
+}
+
+/* สไตล์เมื่อนำเมาส์ไปชี้ที่ปุ่ม "แก้ไข" */
+.btn-edit:hover {
+  background-color: rgb(246, 242, 15); /* ทำให้สีเข้มขึ้น */
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px; /* << เพิ่มหรือแก้ไขค่าตรงนี้ */
+}
+
+/* ... (CSS เดิม) ... */
+
+/* Styles for status badges (if not already present) */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 15px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.status-badge.status-active, .status-badge.status-approved { 
+    background-color: #28a745; 
+}
+.status-badge.status-pending { 
+    background-color: #ffc107;
+    color: #333;
+}
+.status-badge.status-rejected { 
+    background-color: #dc3545; 
+}
+.status-badge.status-suspended, .status-badge.status-completed { 
+    background-color: #6c757d; 
+}
+
+/* ... (CSS เดิม) ... */
+
+/* Styles for Filter Dropdown */
+.filter-container {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-container label {
+  font-weight: 500;
+}
+
+.filter-container select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+

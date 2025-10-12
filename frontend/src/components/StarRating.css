@@ -1,0 +1,19 @@
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.star-rating .star {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 2.5rem; /* ขนาดของดาว */
+  color: #ccc; /* สีดาวปกติ (สีเทา) */
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.star-rating .star.on {
+  color: #ffc107; /* สีดาวที่ถูกเลือก (สีทอง) */
+}

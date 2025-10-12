@@ -1,0 +1,39 @@
+.filter-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  display: flex;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .filter-form {
+    flex-direction: column; /* เปลี่ยนฟอร์มเป็นแนวตั้ง */
+    align-items: stretch; /* ทำให้ input ขยายเต็มความกว้าง */
+  }
+  .filter-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .tutor-grid {
+    grid-template-columns: 1fr; /* ทำให้การ์ดแสดงผลทีละ 1 อัน */
+  }
+}
+

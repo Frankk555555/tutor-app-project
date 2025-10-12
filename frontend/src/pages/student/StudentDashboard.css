@@ -1,0 +1,131 @@
+.student-dashboard {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dashboard-section {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+.dashboard-section h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* === Appointment List Styles (ใช้ร่วมกับของติวเตอร์) === */
+.appointment-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.appointment-item {
+    background: #f9f9f9;
+    border-left: 5px solid #ccc; /* Default border color */
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appointment-item.status-pending {
+    border-left-color: #ffc107; /* เหลือง */
+}
+.appointment-item.status-approved {
+    border-left-color: #28a745; /* เขียว */
+}
+.appointment-item.status-rejected {
+    border-left-color: #dc3545; /* แดง */
+}
+.appointment-item.status-completed {
+    border-left-color: #6c757d; /* เทา */
+}
+
+/* สไตล์สำหรับข้อความสถานะ */
+.status-text {
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: capitalize; /* ทำให้ตัวแรกเป็นตัวใหญ่ */
+}
+.status-text.status-pending {
+    background-color: #ffc107;
+    color: #333;
+}
+.status-text.status-approved {
+    background-color: #28a745;
+}
+.status-text.status-rejected {
+    background-color: #dc3545;
+}
+.status-text.status-completed {
+    background-color: #6c757d;
+}
+
+.appointment-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* === Tab Styles === */
+.tab-container {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #888;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+    color: #3498db; /* สีของแท็บที่ถูกเลือก */
+    border-bottom: 2px solid #3498db;
+}
+
+/* === Styles for History Actions === */
+
+.appointment-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* ระยะห่างระหว่างกลุ่มข้อมูลกับปุ่ม */
+  text-align: right;
+}
+
+.status-price-group {
+    line-height: 1.5; /* เพิ่มระยะห่างระหว่างบรรทัด */
+}
+
+.btn-review {
+  background-color: #007bff; /* สีน้ำเงิน */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap; /* ป้องกันปุ่มขึ้นบรรทัดใหม่ */
+  transition: background-color 0.2s;
+}
+
+.btn-review:hover {
+  background-color: #0056b3;
+}

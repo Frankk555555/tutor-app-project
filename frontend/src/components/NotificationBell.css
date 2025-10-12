@@ -1,0 +1,85 @@
+/* --- Notification Bell Styles --- */
+
+/* 1. ตัวครอบหลักของกระดิ่ง */
+.notification-bell {
+  position: relative; /* สำคัญมาก! สำหรับการจัดตำแหน่ง badge และ dropdown */
+  display: flex;
+  align-items: center;
+}
+
+/* 2. ปุ่มกระดิ่ง */
+.bell-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem; /* ปรับขนาดของอีโมจิกระดิ่ง */
+  position: relative;
+  padding: 0 10px;
+  color: #333;
+}
+
+/* 3. วงกลมสีแดง (Badge) ที่แสดงจำนวนการแจ้งเตือน */
+.badge {
+  position: absolute;
+  top: -5px;
+  right: 0;
+  background-color: #dc3545; /* สีแดง */
+  color: white;
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border: 1px solid white; /* เพิ่มเส้นขอบสีขาวเล็กน้อย */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 4. กล่อง Dropdown ที่จะแสดงเมื่อคลิก */
+.notification-dropdown {
+  position: absolute;
+  top: 100%; /* จัดตำแหน่งให้อยู่ใต้กระดิ่ง */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto; /* เพิ่ม scrollbar ถ้ามีแจ้งเตือนเยอะ */
+  z-index: 1000;
+  margin-top: 10px; /* เพิ่มระยะห่างจาก Navbar */
+}
+
+.notification-dropdown p {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+  margin: 0;
+}
+
+/* 5. รายการการแจ้งเตือน (ul) */
+.notification-dropdown ul {
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+}
+
+/* 6. แต่ละรายการ (li) */
+.notification-dropdown li a {
+  display: block;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.notification-dropdown li:last-child a {
+  border-bottom: none;
+}
+
+.notification-dropdown li a:hover {
+  background-color: #f8f9fa; /* สีพื้นหลังอ่อนๆ เมื่อเมาส์ชี้ */
+}
