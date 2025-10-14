@@ -1,11 +1,16 @@
 import React, { useState, useMemo } from 'react';
-import DatePicker from 'react-datepicker'; // 1. Import DatePicker
+import DatePicker, { registerLocale } from 'react-datepicker'; // 1. Import DatePicker
 import { setHours, setMinutes, parseISO, format } from 'date-fns'; // 2. Import ตัวช่วยจาก date-fns
+import th from 'date-fns/locale/th';
+
+
+registerLocale('th', th);
 
 const BookingForm = ({ tutor, onBook }) => {
     // 3. สร้าง State สำหรับเก็บวันที่ที่เลือกในปฏิทิน
     const [selectedDate, setSelectedDate] = useState(null);
-
+    const [duration, setDuration] = useState(60);
+    const [studentMessage, setStudentMessage] = useState('');
     // 4. (ส่วนสมอง) แปลงข้อมูล 'availability' ให้อยู่ในรูปแบบที่ใช้งานง่าย และจำค่าไว้ด้วย useMemo
     const availableDates = useMemo(() => {
         // สร้าง Set ของวันที่ว่างในรูปแบบ 'YYYY-MM-DD' เพื่อให้ค้นหาได้เร็ว
@@ -52,8 +57,8 @@ const BookingForm = ({ tutor, onBook }) => {
         // 6. ส่งข้อมูล `selectedDate` ที่เป็น Date object กลับไป
         onBook({ 
             appointmentTime: selectedDate, 
-            duration: 60, // Fix ระยะเวลาไว้ที่ 60 นาทีก่อน
-            studentMessage: '' // สามารถเพิ่มช่องสำหรับข้อความได้ในอนาคต
+            duration: duration,
+            studentMessage: studentMessage // สามารถเพิ่มช่องสำหรับข้อความได้ในอนาคต
         });
     };
 
@@ -69,7 +74,8 @@ const BookingForm = ({ tutor, onBook }) => {
                     filterDate={(date) => availableDates.has(format(date, 'yyyy-MM-dd'))}
                     // includeTimes: แสดงเฉพาะช่วงเวลาที่ว่างของวันที่เลือก
                     includeTimes={generateIncludeTimes(selectedDate)}
-                    dateFormat="d MMMM yyyy เวลา HH:mm" // รูปแบบการแสดงผล
+                    locale="th"
+                    dateFormat="d MMMM yyyy เวลา HH:mm น." // รูปแบบการแสดงผล
                     placeholderText="คลิกเพื่อเลือกวันและเวลา"
                     minDate={new Date()} // ไม่ให้เลือกวันในอดีต
                     className="date-picker-input" // เพิ่ม class สำหรับ styling
@@ -77,6 +83,29 @@ const BookingForm = ({ tutor, onBook }) => {
                 />
             </div>
             
+            <div className="form-group">
+                <label htmlFor="duration">เลือกจำนวนชั่วโมง</label>
+                <select 
+                    id="duration"
+                    value={duration} 
+                    onChange={(e) => setDuration(Number(e.target.value))}
+                >
+                    <option value={60}>1 ชั่วโมง</option>
+                    <option value={120}>2 ชั่วโมง</option>
+                    <option value={180}>3 ชั่วโมง</option>
+                </select>
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="studentMessage">ข้อความถึงติวเตอร์ (ถ้ามี)</label>
+                <textarea
+                    id="studentMessage"
+                    value={studentMessage}
+                    onChange={(e) => setStudentMessage(e.target.value)}
+                    placeholder="เช่น อยากเน้นเรื่อง..."
+                ></textarea>
+            </div>
+
             <button type="submit" className="btn" style={{ width: '100%', marginTop: '20px' }}>
                 ยืนยันการนัดหมาย
             </button>

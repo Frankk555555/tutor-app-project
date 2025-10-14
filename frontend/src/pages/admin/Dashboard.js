@@ -89,7 +89,7 @@ const AdminDashboard = () => {
                 <h3>ตรวจสอบการนัดหมายทั้งหมด ({appointments.length} รายการ)</h3>
                 
                 <div className="filter-container">
-                    <label htmlFor="status-filter">กรองตามสถานะ: </label>
+                    <label htmlFor="status-filter">สถานะ: </label>
                     <select 
                         id="status-filter"
                         value={appointmentFilter}
@@ -110,6 +110,7 @@ const AdminDashboard = () => {
                             <th>นักเรียน</th>
                             <th>ติวเตอร์</th>
                             <th>เวลา</th>
+                            <th>ระยะเวลา</th>
                             <th>สถานะ</th>
                         </tr>
                     </thead>
@@ -120,7 +121,14 @@ const AdminDashboard = () => {
                                 <td>{app.student_first_name} {app.student_last_name}</td>
                                 <td>{app.tutor_first_name} {app.tutor_last_name}</td>
                                 <td>{new Date(app.appointment_time).toLocaleString('th-TH')}</td>
-                                <td><span className={`status-badge status-${app.status}`}>{app.status}</span></td>
+                                <td>{app.duration} นาที</td> {/* <-- [เพิ่ม] แสดงข้อมูล */}
+                                <td>
+                                    <span className={`status-badge status-${app.status}`}>{app.status}</span>
+                                    {/* [เพิ่ม] ไอคอนสำหรับดูข้อความ */}
+                                    {app.student_message && (
+                                        <span className="message-tooltip" title={app.student_message}> ⓘ</span>
+                                    )}
+                                </td>
                             </tr>
                         ))}
                     </tbody>

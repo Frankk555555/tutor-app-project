@@ -15,6 +15,7 @@ router.get('/my-profile', authMiddleware, isTutor, tutorController.getMyProfile)
 // GET /api/tutors/my-availability -> ดึงตารางเวลาของตัวเอง
 router.get('/my-availability', authMiddleware, isTutor, tutorController.getMyAvailability);
 
+router.get('/featured', tutorController.getFeaturedTutors);
 // === Public Route ที่รับ Parameter (ต้องอยู่หลังสุดของกลุ่ม GET) ===
 // GET /api/tutors/:id -> ดูโปรไฟล์ของติวเตอร์รายคน
 router.get('/:id', tutorController.getTutorById);
@@ -39,5 +40,7 @@ router.post('/my-subjects', authMiddleware, isTutor, tutorController.addMySubjec
 // DELETE /api/tutors/my-subjects/:subjectId -> ลบวิชาที่สอน
 router.delete('/my-subjects/:subjectId', authMiddleware, isTutor, tutorController.deleteMySubject);
 
+router.post('/my-levels', authMiddleware, isTutor, tutorController.addMyLevel);
+router.delete('/my-levels/:levelId', authMiddleware, isTutor, tutorController.deleteMyLevel);
 
 module.exports = router;

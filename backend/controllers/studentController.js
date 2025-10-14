@@ -59,3 +59,20 @@ exports.uploadProfilePicture = async (req, res) => {
         res.status(500).json({ message: 'Server error while uploading picture.' });
     }
 };
+
+exports.getStudentProfileById = async (req, res) => {
+    const { studentId } = req.params;
+    try {
+        // เลือกเฉพาะข้อมูลที่ไม่ใช่ข้อมูลส่วนตัว (ห้ามส่ง password, email)
+        const [rows] = await pool.query(
+            'SELECT id, first_name, last_name, profile_picture, created_at FROM users WHERE id = ? AND role = ?',
+            [studentId, 'student']
+        );
+        if (rows.length === 0) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+        res.json(rows[0]);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+};

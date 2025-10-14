@@ -25,7 +25,8 @@ const LoginPage = () => {
       }
       window.location.reload(); // เพื่อให้ Navbar อัปเดต
     } catch (err) {
-      setError("อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+      setError("อีเมล์หรือรหัสผ่านไม่ถูกต้อง");
+      setTimeout(() => setError(""), 2000); // ลบข้อความผิดพลาดหลัง 3 วินาที
     }
   };
 
@@ -34,7 +35,7 @@ const LoginPage = () => {
       <h2>เข้าสู่ระบบ</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>อีเมล</label>
+          <label>Email</label>
           <input
             type="email"
             value={email}
@@ -43,7 +44,7 @@ const LoginPage = () => {
           />
         </div>
         <div className="form-group">
-          <label>รหัสผ่าน</label>
+          <label>Password</label>
           <input
             type="password"
             value={password}

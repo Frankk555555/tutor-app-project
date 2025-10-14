@@ -69,12 +69,11 @@ exports.updateUser = async (req, res) => {
 };
 
 exports.getAllAppointments = async (req, res) => {
-    // 1. ดึงค่า status จาก query string (เช่น /api/admin/appointments?status=pending)
     const { status } = req.query;
-
     let query = `
         SELECT 
             a.id, a.appointment_time, a.status, a.total_price,
+            a.duration, a.student_message, -- <-- [เพิ่ม] ดึงข้อมูล 2 คอลัมน์นี้
             s.first_name as student_first_name, s.last_name as student_last_name,
             t.first_name as tutor_first_name, t.last_name as tutor_last_name
         FROM appointments a
@@ -82,17 +81,12 @@ exports.getAllAppointments = async (req, res) => {
         JOIN users t ON a.tutor_user_id = t.id
     `;
     const values = [];
-
-    // 2. เพิ่มเงื่อนไข WHERE ถ้ามีการส่งค่า status มาด้วย
     if (status) {
         query += ' WHERE a.status = ?';
         values.push(status);
     }
-
     query += ' ORDER BY a.appointment_time DESC';
-
     try {
-        // 3. ส่ง values ไปกับ query เพื่อความปลอดภัย
         const [appointments] = await pool.query(query, values);
         res.json(appointments);
     } catch (error) {

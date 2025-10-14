@@ -24,7 +24,7 @@ const RegisterPage = () => {
       await api.register(formData);
       navigate('/login');
     } catch (err) {
-      setError('ไม่สามารถสมัครสมาชิกได้ อาจมีอีเมลนี้ในระบบแล้ว');
+      setError('ไม่สามารถสมัครสมาชิกได้ อาจมีอีเมล์นี้ในระบบแล้ว');
     }
   };
 
@@ -42,15 +42,15 @@ const RegisterPage = () => {
             <input type="text" name="lastName" onChange={handleChange} required />
         </div>
         <div className="form-group">
-            <label>อีเมล</label>
+            <label>Email</label>
             <input type="email" name="email" onChange={handleChange} required />
         </div>
         <div className="form-group">
-            <label>รหัสผ่าน</label>
+            <label>Password</label>
             <input type="password" name="password" onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <label>คุณคือ?</label>
+          <label>คุณคือ ?</label>
           <select name="role" value={formData.role} onChange={handleChange}>
             <option value="student">นักเรียน</option>
             <option value="tutor">ติวเตอร์</option>

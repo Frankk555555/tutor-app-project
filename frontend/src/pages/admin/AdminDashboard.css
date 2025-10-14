@@ -196,3 +196,12 @@ tbody tr:hover {
   font-size: 1rem;
 }
 
+.message-tooltip {
+  cursor: help;
+  color: #007bff;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+

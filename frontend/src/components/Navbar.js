@@ -31,7 +31,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <Link to="/" className="nav-logo">
-        ค้นหาติวเตอร์
+        <img
+          src="/home-button.png"
+          alt=""
+          style={{ height: "40px" }}
+        />
       </Link>
       <ul className="nav-links">
         <li>

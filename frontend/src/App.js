@@ -12,6 +12,7 @@ import AdminDashboard from './pages/admin/Dashboard';
 import "react-datepicker/dist/react-datepicker.css";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import StudentProfilePage from './pages/student/StudentProfilePage';
 import './App.css';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
 
           {/* dashboard routes */}
           <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/student/profile/:id" element={<StudentProfilePage />} />
           <Route path="/tutor/dashboard" element={<TutorDashboard />} />      
           <Route path="/admin/dashboard" element={<AdminDashboard />} />    
         </Routes>

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // สร้าง instance ของ axios พร้อมกำหนดค่าเริ่มต้น
 const apiClient = axios.create({
-  baseURL: "https://tutor-app-api-ztou.onrender.com/api",
+  baseURL: "http://localhost:5000/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -141,7 +141,30 @@ const apiService = {
   },
   markAllNotificationsAsRead() {
     return apiClient.patch('/notifications/read-all');
-  }
+  },
+
+  getAllLevels() {
+    return apiClient.get('/levels');
+  },
+
+  addTutorLevel(levelData) {
+    return apiClient.post('/tutors/my-levels', levelData);
+  },
+  deleteTutorLevel(levelId) {
+    return apiClient.delete(`/tutors/my-levels/${levelId}`);
+  },
+  searchSubjects(query) {
+    return apiClient.get(`/subjects/search?q=${query}`);
+  },
+  getStudentProfileById(studentId) {
+    return apiClient.get(`/students/profile/${studentId}`);
+  },
+  getFeaturedTutors() {
+    return apiClient.get('/tutors/featured');
+  },
+
 };
+
+
 
 export default apiService;

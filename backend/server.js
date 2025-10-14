@@ -10,6 +10,7 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const subjectRoutes = require('./routes/subjectRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const levelRoutes = require('./routes/levelRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,6 +29,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/levels', levelRoutes);
 
 
 app.get('/', (req, res) => {

@@ -60,24 +60,25 @@ exports.createAppointment = async (req, res) => {
 
 // (ติวเตอร์) ดูรายการนัดหมายที่เข้ามาหาตัวเอง
 exports.getTutorAppointments = async (req, res) => {
-  const tutorId = req.user.userId;
-  try {
-    const [appointments] = await pool.query(
-      `
-            SELECT a.id, a.appointment_time, a.status, a.duration, a.total_price,
-                   u.first_name as student_first_name, u.last_name as student_last_name
+    const tutorId = req.user.userId;
+    try {
+        const [appointments] = await pool.query(`
+            SELECT 
+                a.id, a.appointment_time, a.status, a.duration, a.total_price,
+                a.student_message,
+                u.id as student_user_id, -- <-- [เพิ่ม] ดึง ID ของนักเรียน
+                u.first_name as student_first_name, 
+                u.last_name as student_last_name
             FROM appointments a
             JOIN users u ON a.student_user_id = u.id
             WHERE a.tutor_user_id = ?
             ORDER BY a.appointment_time DESC
-        `,
-      [tutorId]
-    );
-    res.json(appointments);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
+        `, [tutorId]);
+        res.json(appointments);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Server error' });
+    }
 };
 
 // (ติวเตอร์) ตอบรับ หรือ ปฏิเสธ การนัดหมาย
