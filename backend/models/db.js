@@ -7,6 +7,7 @@ const pool = mysql.createPool({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   port: process.env.DB_PORT || 3306, // เพิ่ม Port และค่าเริ่มต้น
+  ssl: process.env.DB_HOST === 'localhost' ? undefined : { rejectUnauthorized: false }, // [แก้ไข] รองรับ SSL ของคลาวด์เช่น Aiven
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
