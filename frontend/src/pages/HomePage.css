@@ -48,8 +48,8 @@
 
 /* --- [แก้ไข] สไตล์สำหรับปุ่ม Call-to-Action ใหม่ --- */
 .hero-cta-button {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
   border-radius: 50px;
   padding: 15px 40px;
   font-size: 1.2rem;
@@ -62,7 +62,7 @@
 }
 
 .hero-cta-button:hover {
-  background-color: #2980b9;
+  background-color: var(--color-primary-hover);
   transform: translateY(-3px); /* ทำให้ปุ่มลอยขึ้นเล็กน้อย */
 }
 
@@ -70,14 +70,14 @@
 
 .how-it-works-section {
   padding: 80px 20px;
-  background-color: #f8f9fa;
+  background-color: var(--color-bg-alt);
   text-align: center;
 }
 
 .section-title {
   font-size: 2.5rem;
   margin-bottom: 50px;
-  color: #333;
+  color: var(--color-ink);
 }
 
 .steps-container {
@@ -90,7 +90,7 @@
 }
 
 .step-card {
-  background: white;
+  background: var(--color-surface);
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
@@ -111,7 +111,7 @@
 }
 
 .step-svg-icon {
-  stroke: #3498db;
+  stroke: var(--color-primary);
   transition: transform 0.3s ease;
 }
 
@@ -122,11 +122,11 @@
 .step-card h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #3498db;
+  color: var(--color-primary);
 }
 
 .step-card p {
-  color: #666;
+  color: var(--color-muted);
   line-height: 1.6;
 }
 
@@ -141,7 +141,7 @@
 
 .featured-tutors-section {
   padding: 80px 20px;
-  background-color: #fff; /* สีพื้นหลังสีขาว */
+  background-color: var(--color-bg);
   text-align: center;
 }
 
@@ -164,18 +164,18 @@
 .hero-search-form {
   max-width: 750px;
   margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: oklch(100% 0 250 / 95%);
   padding: 8px 10px 8px 15px;
   border-radius: 50px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px);
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border: 1.5px solid oklch(100% 0 250 / 80%);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-search-form:focus-within {
-  border-color: rgba(52, 152, 219, 0.5); /* Beacon Blue */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 0 4px rgba(52, 152, 219, 0.12);
+  border-color: oklch(52% calc(0.22 * var(--p-color-amount, 1)) 250 / 50%); /* Beacon Blue */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), var(--focus-ring);
 }
 
 .hero-search-inputs {
@@ -201,7 +201,7 @@
 }
 
 .search-input-wrapper {
-  border-right: 1px solid #eef2f3;
+  border-right: 1px solid var(--color-border);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -214,7 +214,7 @@
 .search-input-icon,
 .search-select-icon {
   font-size: 1.1rem;
-  color: #95a5a6;
+  color: var(--color-text-muted);
   margin-right: 12px;
   display: flex;
   align-items: center;
@@ -229,13 +229,13 @@
   font-family: 'Chakra Petch', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  color: #2c3e50;
+  color: var(--color-ink);
   outline: none;
   padding: 8px 0;
 }
 
 .hero-search-input::placeholder {
-  color: #95a5a6;
+  color: var(--color-text-muted);
   opacity: 0.8;
 }
 
@@ -249,8 +249,8 @@
 }
 
 .hero-search-button {
-  background-color: #3498db;
-  color: white;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
   border: none;
   border-radius: 50px;
   padding: 14px 35px;
@@ -263,14 +263,14 @@
 }
 
 .hero-search-button:hover {
-  background-color: #2980b9;
+  background-color: var(--color-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.3);
+  box-shadow: 0 6px 20px oklch(52% calc(0.22 * var(--p-color-amount, 1)) 250 / 30%);
 }
 
 .hero-search-button:active {
   transform: translateY(0);
-  box-shadow: 0 3px 10px rgba(52, 152, 219, 0.2);
+  box-shadow: 0 3px 10px oklch(52% calc(0.22 * var(--p-color-amount, 1)) 250 / 20%);
 }
 
 /* Responsiveness for Search Form */
@@ -290,7 +290,7 @@
   .search-input-wrapper,
   .search-select-wrapper {
     border-right: none;
-    border-bottom: 1.5px solid #f2f5f6;
+    border-bottom: 1.5px solid var(--color-border);
     padding: 8px 10px;
     border-radius: 0;
     width: 100%;

@@ -2,7 +2,9 @@ import axios from "axios";
 
 // สร้าง instance ของ axios พร้อมกำหนดค่าเริ่มต้น
 const apiClient = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: process.env.REACT_APP_API_URL 
+    ? `${process.env.REACT_APP_API_URL}/api` 
+    : "http://localhost:5000/api",
   headers: {
     "Content-Type": "application/json",
   },

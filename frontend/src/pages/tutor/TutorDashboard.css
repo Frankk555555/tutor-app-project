@@ -1,34 +1,6 @@
 /* ==========================================================================
-   TUTOR DASHBOARD DESIGN SYSTEM (The Supportive Academy)
+   TUTOR DASHBOARD (The Supportive Academy)
    ========================================================================== */
-
-:root {
-  --color-primary: #3498db;
-  --color-primary-hover: #2980b9;
-  --color-accent: #27ae60;
-  --color-ink: #2c3e50;
-  --color-bg: #f4f7f6;
-  --color-surface: #ffffff;
-  --color-border: #e2e8f0;
-  --color-border-focus: #3498db;
-  
-  /* Status Colors (Soft tints) */
-  --status-pending-bg: #fffbeb;
-  --status-pending-border: #fef3c7;
-  --status-pending-text: #b45309;
-
-  --status-approved-bg: #f0fdf4;
-  --status-approved-border: #dcfce7;
-  --status-approved-text: #15803d;
-
-  --status-rejected-bg: #fef2f2;
-  --status-rejected-border: #fee2e2;
-  --status-rejected-text: #b91c1c;
-
-  --status-completed-bg: #f8fafc;
-  --status-completed-border: #e2e8f0;
-  --status-completed-text: #475569;
-}
 
 .tutor-dashboard {
   max-width: 1000px;
@@ -51,7 +23,7 @@
    ========================================================================== */
 .tab-container {
   display: flex;
-  background-color: rgba(44, 62, 80, 0.06);
+  background-color: oklch(22% calc(0.035 * var(--p-color-amount, 1)) 250 / 6%);
   padding: 4px;
   border-radius: 8px;
   margin-bottom: 30px;
@@ -68,7 +40,7 @@
   font-family: 'Chakra Petch', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--color-muted);
   border-radius: 6px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   line-height: 1.5;
@@ -94,7 +66,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
-  border: 1px solid #f1f5f9;
+  border: 1px solid var(--color-border);
 }
 
 .dashboard-section h3 {
@@ -102,7 +74,7 @@
   color: var(--color-ink);
   font-size: 1.4rem;
   font-weight: 500;
-  border-bottom: 2px solid #f1f5f9;
+  border-bottom: 2px solid var(--color-border);
   padding-bottom: 15px;
   margin-bottom: 25px;
 }
@@ -147,7 +119,7 @@
 .availability-form input:focus {
   outline: none;
   border-color: var(--color-border-focus);
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+  box-shadow: var(--focus-ring);
 }
 
 .form-group textarea {
@@ -185,8 +157,8 @@
 }
 
 .btn:disabled {
-  background-color: #cbd5e1;
-  color: #94a3b8;
+  background-color: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
   cursor: not-allowed;
   box-shadow: none;
 }
@@ -266,7 +238,7 @@
 
 .appointment-detail {
   font-size: 0.95rem;
-  color: #475569;
+  color: var(--color-muted);
 }
 
 .status-container {
@@ -286,25 +258,30 @@
   font-size: 0.85rem;
   font-weight: 600;
   line-height: 1.4;
+  border: 1px solid transparent;
 }
 
 .status-badge.status-pending {
-  background-color: rgba(245, 158, 11, 0.15);
+  background-color: var(--status-pending-bg);
+  border-color: var(--status-pending-border);
   color: var(--status-pending-text);
 }
 
 .status-badge.status-approved {
-  background-color: rgba(16, 185, 129, 0.15);
+  background-color: var(--status-approved-bg);
+  border-color: var(--status-approved-border);
   color: var(--status-approved-text);
 }
 
 .status-badge.status-rejected {
-  background-color: rgba(239, 68, 68, 0.15);
+  background-color: var(--status-rejected-bg);
+  border-color: var(--status-rejected-border);
   color: var(--status-rejected-text);
 }
 
 .status-badge.status-completed {
-  background-color: rgba(100, 116, 139, 0.15);
+  background-color: var(--status-completed-bg);
+  border-color: var(--status-completed-border);
   color: var(--status-completed-text);
 }
 
@@ -333,17 +310,17 @@
 }
 
 .btn-approve:hover {
-  background-color: #219653;
+  background-color: var(--color-accent-hover);
   transform: translateY(-1px);
 }
 
 .btn-reject {
-  background-color: #e74c3c;
+  background-color: var(--color-danger);
   color: var(--color-surface);
 }
 
 .btn-reject:hover {
-  background-color: #c0392b;
+  background-color: var(--color-danger-hover);
   transform: translateY(-1px);
 }
 
@@ -366,8 +343,8 @@
   gap: 15px;
   align-items: end;
   margin-bottom: 25px;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
   padding: 20px;
   border-radius: 8px;
 }
@@ -416,7 +393,7 @@
 
 .divider {
   border: none;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--color-border);
   margin: 30px 0;
 }
 
@@ -441,7 +418,7 @@
 }
 
 .availability-list li:hover {
-  border-color: #cbd5e1;
+  border-color: var(--color-border-muted);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -452,8 +429,8 @@
 
 .btn-delete-slot {
   background: transparent;
-  border: 1px solid #fee2e2;
-  color: #ef4444;
+  border: 1px solid var(--color-danger-surface);
+  color: var(--color-danger);
   border-radius: 4px;
   padding: 6px 12px;
   cursor: pointer;
@@ -464,9 +441,9 @@
 }
 
 .btn-delete-slot:hover {
-  background: #ef4444;
+  background: var(--color-danger);
   color: var(--color-surface);
-  border-color: #ef4444;
+  border-color: var(--color-danger);
 }
 
 /* ==========================================================================
@@ -487,7 +464,7 @@
   object-fit: cover;
   border: 4px solid var(--color-surface);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  background: #f1f5f9;
+  background: var(--color-surface-subtle);
 }
 
 /* ==========================================================================
@@ -516,24 +493,24 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  background-color: #f0f4f8;
+  background-color: var(--color-bg-alt);
   color: var(--color-ink);
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 500;
   transition: all 0.2s ease;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--color-border);
 }
 
 .chip:hover {
-  background-color: #e2e8f0;
+  background-color: var(--color-border-muted);
 }
 
 .chip-delete-btn {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--color-text-muted);
   font-size: 1.2rem;
   line-height: 1;
   margin-left: 6px;
@@ -546,12 +523,12 @@
 }
 
 .chip-delete-btn:hover {
-  color: #ef4444;
+  color: var(--color-danger);
 }
 
 .no-data-text {
   font-size: 0.9rem;
-  color: #94a3b8;
+  color: var(--color-text-muted);
   margin: 0;
   align-self: center;
 }

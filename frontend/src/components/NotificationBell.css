@@ -40,7 +40,7 @@
   position: absolute;
   top: 100%; /* จัดตำแหน่งให้อยู่ใต้กระดิ่ง */
   right: 0;
-  background-color: white;
+  background-color: var(--color-surface);
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -81,5 +81,5 @@
 }
 
 .notification-dropdown li a:hover {
-  background-color: #f8f9fa; /* สีพื้นหลังอ่อนๆ เมื่อเมาส์ชี้ */
+  background-color: var(--color-surface-subtle);
 }

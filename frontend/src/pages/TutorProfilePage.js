@@ -6,7 +6,7 @@ import BookingForm from '../components/BookingForm';
 import './TutorProfilePage.css';
 import Spinner from '../components/Spinner';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const TutorProfilePage = () => {
     const { id } = useParams();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
+import './Auth.css';
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -24,41 +25,88 @@ const RegisterPage = () => {
       await api.register(formData);
       navigate('/login');
     } catch (err) {
-      setError('ไม่สามารถสมัครสมาชิกได้ อาจมีอีเมล์นี้ในระบบแล้ว');
+      setError('ไม่สามารถสมัครสมาชิกได้ อาจมีอีเมลนี้ในระบบแล้ว');
     }
   };
 
   return (
-    <div className="form-container">
-      <h2>สมัครสมาชิก</h2>
-      <form onSubmit={handleSubmit}>
-        {/* ... (inputs for firstName, lastName, email, password) ... */}
-        <div className="form-group">
-            <label>ชื่อจริง</label>
-            <input type="text" name="firstName" onChange={handleChange} required />
+    <div className="auth-layout">
+      <div className="auth-panel">
+        <div className="auth-header">
+          <h2>สมัครสมาชิก</h2>
+          <p className="auth-subtitle">สร้างบัญชีเพื่อเริ่มต้นการเรียนรู้และสอนกับเรา</p>
         </div>
-        <div className="form-group">
-            <label>นามสกุล</label>
-            <input type="text" name="lastName" onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-            <label>Email</label>
-            <input type="email" name="email" onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-            <label>Password</label>
-            <input type="password" name="password" onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>คุณคือ ?</label>
-          <select name="role" value={formData.role} onChange={handleChange}>
-            <option value="student">นักเรียน</option>
-            <option value="tutor">ติวเตอร์</option>
-          </select>
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit" className="btn">สมัครสมาชิก</button>
-      </form>
+        <form className="auth-form" onSubmit={handleSubmit}>
+          
+          <div className="form-row">
+            <div className="form-field">
+              <label htmlFor="firstName">ชื่อจริง</label>
+              <input 
+                id="firstName" 
+                type="text" 
+                name="firstName" 
+                placeholder="ชื่อ" 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="lastName">นามสกุล</label>
+              <input 
+                id="lastName" 
+                type="text" 
+                name="lastName" 
+                placeholder="นามสกุล" 
+                onChange={handleChange} 
+                required 
+              />
+            </div>
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="email">อีเมล</label>
+            <input 
+              id="email" 
+              type="email" 
+              name="email" 
+              placeholder="name@example.com" 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="password">รหัสผ่าน</label>
+            <input 
+              id="password" 
+              type="password" 
+              name="password" 
+              placeholder="••••••••" 
+              onChange={handleChange} 
+              required 
+            />
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="role">คุณคือ ?</label>
+            <select id="role" name="role" value={formData.role} onChange={handleChange}>
+              <option value="student">นักเรียน</option>
+              <option value="tutor">ติวเตอร์</option>
+            </select>
+          </div>
+
+          {error && <div className="form-alert">{error}</div>}
+
+          <div className="form-actions">
+            <button type="submit" className="auth-submit-btn">สมัครสมาชิก</button>
+          </div>
+          
+          <div className="auth-footer">
+            มีบัญชีอยู่แล้วใช่ไหม? 
+            <Link to="/login" className="auth-link">เข้าสู่ระบบ</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

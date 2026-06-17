@@ -4,7 +4,7 @@ import api from '../../services/api';
 import Spinner from '../../components/Spinner';
 import './StudentProfilePage.css'; // สร้างไฟล์ CSS นี้ด้วย
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const StudentProfilePage = () => {
     const { id } = useParams();

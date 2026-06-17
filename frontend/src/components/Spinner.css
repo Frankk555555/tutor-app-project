@@ -8,7 +8,7 @@
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 8px solid #f3f3f3; /* สีพื้นหลังของวงกลม */
+  border: 8px solid var(--color-bg-alt);
   border-top: 8px solid #3498db; /* สีของส่วนที่หมุน */
   border-radius: 50%;
   animation: spin 1s linear infinite;

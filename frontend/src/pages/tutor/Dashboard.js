@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { Link } from 'react-router-dom'; // <-- [เพิ่ม] Import Link
 
 
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const recurringDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const statusTranslation = {
     pending: "รอดำเนินการ",

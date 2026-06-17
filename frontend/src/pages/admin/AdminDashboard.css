@@ -1,207 +1,583 @@
+/* ==========================================================================
+   ADMIN DASHBOARD — polished (The Supportive Academy)
+   ========================================================================== */
+
 .admin-dashboard {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 20px;
-  font-family: sans-serif;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md) var(--space-2xl);
+  font-family: 'Chakra Petch', sans-serif;
+  color: var(--color-ink);
+  line-height: 1.5;
 }
 
-.admin-dashboard h2 {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.admin-section {
-  background: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  margin-bottom: 30px;
-}
-
-.admin-section h3 {
-  margin-top: 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
-}
-
-/* --- User Management Table Styles --- */
-table {
-  width: 100%;
-  border-collapse: collapse; /* ทำให้เส้นขอบติดกัน */
-  margin-top: 20px;
-}
-
-thead {
-  background-color: #f8f9fa;
-}
-
-th, td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #dee2e6;
-}
-
-th {
-  font-weight: 600;
-}
-
-tbody tr:hover {
-  background-color: #f1f1f1; /* สีพื้นหลังเมื่อเมาส์ชี้ */
-}
-
-.btn-delete {
-  background-color: #dc3545; /* สีแดง */
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-delete:hover {
-  background-color: #c82333;
-}
-
-/* --- Subject Management Styles --- */
-.admin-section form {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.admin-section input[type="text"] {
-  flex-grow: 1; /* ทำให้ช่อง input ขยายเต็มพื้นที่ */
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.admin-section form button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.admin-section ul {
-  list-style: none;
+.admin-dashboard .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
   padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.admin-section li {
-  background: #f1f1f1;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 8px;
+/* Page header */
+.admin-page-header {
+  margin-bottom: var(--space-xl);
 }
 
-/* ... (CSS เดิม) ... */
-
-/* Styles for Edit Modal Form */
-.form-group {
-    margin-bottom: 15px;
-}
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-.form-group input, .form-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+.admin-page-header h2 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-wrap: balance;
 }
 
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 20px;
-}
-.btn-secondary {
-    background-color: #6c757d;
-    color: white;
+.admin-page-header p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  max-width: 65ch;
+  line-height: 1.6;
+  text-wrap: pretty;
 }
 
-.btn-edit {
-  background-color: yellow;
-  color: rgb(0, 0, 0);
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  white-space: nowrap; /* ป้องกันปุ่มขึ้นบรรทัดใหม่ */
+/* Sections */
+.admin-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-xl);
 }
 
-/* สไตล์เมื่อนำเมาส์ไปชี้ที่ปุ่ม "แก้ไข" */
-.btn-edit:hover {
-  background-color: rgb(246, 242, 15); /* ทำให้สีเข้มขึ้น */
+.admin-section:last-child {
+  margin-bottom: 0;
 }
 
-.action-buttons {
-    display: flex;
-    gap: 15px; /* << เพิ่มหรือแก้ไขค่าตรงนี้ */
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-bottom: var(--space-md);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* ... (CSS เดิม) ... */
-
-/* Styles for status badges (if not already present) */
-.status-badge {
-    padding: 4px 10px;
-    border-radius: 15px;
-    color: white;
-    font-size: 0.8rem;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-.status-badge.status-active, .status-badge.status-approved { 
-    background-color: #28a745; 
-}
-.status-badge.status-pending { 
-    background-color: #ffc107;
-    color: #333;
-}
-.status-badge.status-rejected { 
-    background-color: #dc3545; 
-}
-.status-badge.status-suspended, .status-badge.status-completed { 
-    background-color: #6c757d; 
+.section-title-block h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-wrap: balance;
 }
 
-/* ... (CSS เดิม) ... */
+.section-count {
+  display: block;
+  margin-top: var(--space-xs);
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  font-weight: 400;
+  line-height: 1.5;
+}
 
-/* Styles for Filter Dropdown */
+.section-count.is-loading {
+  color: var(--color-muted);
+  font-style: normal;
+}
+
 .filter-container {
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-sm);
+  flex-shrink: 0;
 }
 
 .filter-container label {
+  font-size: 0.875rem;
   font-weight: 500;
+  color: var(--color-muted);
 }
 
 .filter-container select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+  min-width: 148px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition: border-color 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.filter-container select:hover {
+  border-color: var(--color-border-focus);
+}
+
+.filter-container select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+.filter-container select:focus:not(:focus-visible) {
+  box-shadow: none;
+}
+
+.filter-container select:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Table layout */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-sm);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table thead {
+  background-color: var(--color-surface-subtle);
+}
+
+.admin-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.admin-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tbody tr {
+  transition: background-color 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.admin-table tbody tr:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+.admin-table .col-id {
+  width: 56px;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+}
+
+.admin-table .col-email {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-table .col-actions {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.status-badge.status-pending {
+  background-color: var(--status-pending-bg);
+  border-color: var(--status-pending-border);
+  color: var(--status-pending-text);
+}
+
+.status-badge.status-approved {
+  background-color: var(--status-approved-bg);
+  border-color: var(--status-approved-border);
+  color: var(--status-approved-text);
+}
+
+.status-badge.status-rejected {
+  background-color: var(--status-rejected-bg);
+  border-color: var(--status-rejected-border);
+  color: var(--status-rejected-text);
+}
+
+.status-badge.status-completed {
+  background-color: var(--status-completed-bg);
+  border-color: var(--status-completed-border);
+  color: var(--status-completed-text);
+}
+
+.status-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
 }
 
 .message-tooltip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-primary);
+  background: var(--color-primary-subtle);
   cursor: help;
-  color: #007bff;
-  font-weight: bold;
-  margin-left: 5px;
+  flex-shrink: 0;
+  transition: background-color 0.15s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+.message-tooltip:hover {
+  background: oklch(52% calc(0.22 * var(--p-color-amount, 1)) 250 / 18%);
+}
 
+.message-tooltip:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
 
+/* Role labels */
+.role-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.5;
+  background: var(--color-surface-subtle);
+  color: var(--color-muted);
+}
+
+.role-badge.role-tutor {
+  background: var(--color-primary-subtle);
+  color: var(--color-primary);
+}
+
+.role-badge.role-student {
+  background: oklch(62% calc(0.17 * var(--p-color-amount, 1)) 145 / 10%);
+  color: var(--color-accent);
+}
+
+.role-badge.role-admin {
+  background: oklch(22% calc(0.035 * var(--p-color-amount, 1)) 250 / 8%);
+  color: var(--color-ink);
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn-edit,
+.btn-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.btn-edit {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.btn-edit:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-edit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-delete {
+  background-color: var(--color-danger-surface);
+  color: var(--status-rejected-text);
+}
+
+.btn-delete:hover:not(:disabled) {
+  background-color: var(--color-danger-surface-hover);
+}
+
+.btn-delete:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-edit:disabled,
+.btn-delete:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-edit:focus-visible,
+.btn-delete:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Empty & loading states */
+.section-loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-md);
+}
+
+.section-empty {
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+}
+
+/* Modal form (scoped) */
+.admin-dashboard .modal-form-title {
+  margin: 0 0 var(--space-lg);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.admin-dashboard .form-group {
+  margin-bottom: var(--space-md);
+}
+
+.admin-dashboard .form-group label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.admin-dashboard .form-group input,
+.admin-dashboard .form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  box-sizing: border-box;
+  line-height: 1.5;
+  transition: border-color 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.admin-dashboard .form-group input:hover,
+.admin-dashboard .form-group select:hover {
+  border-color: var(--color-border-focus);
+}
+
+.admin-dashboard .form-group input:focus,
+.admin-dashboard .form-group select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--focus-ring);
+}
+
+.admin-dashboard .form-group input:disabled,
+.admin-dashboard .form-group select:disabled {
+  background: var(--color-surface-subtle);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.admin-dashboard .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.admin-dashboard .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  transition: background-color 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.admin-dashboard .btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.admin-dashboard .btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.admin-dashboard .btn:disabled {
+  background-color: var(--color-disabled-bg);
+  color: var(--color-disabled-text);
+  cursor: not-allowed;
+}
+
+.admin-dashboard .btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.admin-dashboard .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.5;
+  cursor: pointer;
+  background-color: var(--color-surface-subtle);
+  color: var(--color-muted);
+  transition: background-color 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.admin-dashboard .btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-border);
+  color: var(--color-ink);
+}
+
+.admin-dashboard .btn-secondary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.admin-dashboard .btn-secondary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.admin-dashboard .btn-secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .admin-dashboard {
+    padding: var(--space-md) var(--space-sm) var(--space-xl);
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-container {
+    justify-content: flex-start;
+  }
+
+  .filter-container select {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    min-height: 44px;
+  }
+
+  .admin-table .col-email {
+    max-width: 140px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-table tbody tr,
+  .btn-edit,
+  .btn-delete,
+  .filter-container select,
+  .message-tooltip,
+  .admin-dashboard .btn,
+  .admin-dashboard .btn-secondary,
+  .admin-dashboard .form-group input,
+  .admin-dashboard .form-group select {
+    transition: none;
+  }
+
+  .btn-edit:active:not(:disabled),
+  .btn-delete:active:not(:disabled),
+  .admin-dashboard .btn:active:not(:disabled),
+  .admin-dashboard .btn-secondary:active:not(:disabled) {
+    transform: none;
+  }
+}
