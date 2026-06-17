@@ -29,7 +29,7 @@ const StudentProfilePage = () => {
     if (!student) return <p>ไม่พบข้อมูลนักเรียน</p>;
 
     const imageUrl = student.profile_picture
-        ? `${API_BASE_URL}/${student.profile_picture}`
+        ? (student.profile_picture.startsWith('http') ? student.profile_picture : `${API_BASE_URL}/${student.profile_picture}`)
         : 'https://via.placeholder.com/150';
 
     return (

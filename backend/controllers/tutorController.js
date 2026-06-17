@@ -296,7 +296,7 @@ exports.uploadProfilePicture = async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: "Please upload a file." });
     }
-    const filePath = `uploads/${req.file.filename}`;
+    const filePath = req.file.path; // Cloudinary ส่ง URL กลับมาใน path
     try {
         await pool.query("UPDATE users SET profile_picture = ? WHERE id = ?", [filePath, tutorId]);
         res.json({ message: "Profile picture uploaded successfully", filePath });

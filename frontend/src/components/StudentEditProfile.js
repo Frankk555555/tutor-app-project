@@ -63,7 +63,7 @@ const StudentEditProfile = () => {
     if (loading) return <p>กำลังโหลดข้อมูล...</p>;
 
     const imageUrl = profile.profile_picture
-        ? `${API_BASE_URL}/${profile.profile_picture}`
+        ? (profile.profile_picture.startsWith('http') ? profile.profile_picture : `${API_BASE_URL}/${profile.profile_picture}`)
         : 'https://via.placeholder.com/150';
 
     return (

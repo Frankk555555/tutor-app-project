@@ -1,16 +1,23 @@
 const multer = require('multer');
-const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 
-// ตั้งค่าการจัดเก็บไฟล์
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // บอกให้ Multer เก็บไฟล์ไว้ในโฟลเดอร์ uploads
-    },
-    filename: function (req, file, cb) {
-        // ป้องกันชื่อไฟล์ซ้ำกัน: userId-timestamp.extension
-        const uniqueSuffix = req.user.userId + '-' + Date.now() + path.extname(file.originalname);
-        cb(null, uniqueSuffix);
-    }
+// ตั้งค่า Cloudinary ด้วย Environment Variables
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// ตั้งค่าการจัดเก็บไฟล์บน Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'tutor_platform_profiles', // ชื่อโฟลเดอร์ใน Cloudinary
+    allowed_formats: ['jpg', 'jpeg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }] // ย่อรูปภาพก่อนเซฟ
+  },
 });
 
 // สร้าง middleware ของ multer

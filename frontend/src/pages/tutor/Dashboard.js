@@ -219,7 +219,9 @@ const TutorDashboard = () => {
 
     if (loading) return <Spinner />;
 
-    const imageUrl = profileData.profile_picture ? `${API_BASE_URL}/${profileData.profile_picture}` : "https://via.placeholder.com/150";
+    const imageUrl = profileData.profile_picture 
+        ? (profileData.profile_picture.startsWith('http') ? profileData.profile_picture : `${API_BASE_URL}/${profileData.profile_picture}`) 
+        : "https://via.placeholder.com/150";
 
     return (
         <div className="tutor-dashboard">

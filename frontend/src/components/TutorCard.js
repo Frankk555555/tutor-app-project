@@ -8,7 +8,7 @@ const TutorCard = ({ tutor }) => {
 
   // 2. สร้าง URL รูปภาพให้สมบูรณ์ โดยเช็คก่อนว่ามีข้อมูล profile_picture หรือไม่
   const imageUrl = tutor.profile_picture
-    ? `${API_BASE_URL}/${tutor.profile_picture}` // ถ้ามี ให้เติม URL หลักข้างหน้า
+    ? (tutor.profile_picture.startsWith('http') ? tutor.profile_picture : `${API_BASE_URL}/${tutor.profile_picture}`)
     : 'https://www.flaticon.com/free-icon/user_3024605?term=person&page=1&position=7&origin=search&related_id=3024605';      // ถ้าไม่มี ให้ใช้รูปสำรอง
 
   // Render star ratings based on rating value

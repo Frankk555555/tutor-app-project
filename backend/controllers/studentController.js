@@ -46,14 +46,10 @@ exports.uploadProfilePicture = async (req, res) => {
         return res.status(400).json({ message: 'Please upload a file.' });
     }
 
-    const filePath = `uploads/${req.file.filename}`;
-
+    const filePath = req.file.path; // Cloudinary ส่ง URL กลับมาใน path
     try {
-        await pool.query(
-            'UPDATE users SET profile_picture = ? WHERE id = ?',
-            [filePath, studentId]
-        );
-        res.json({ message: 'Profile picture uploaded successfully', filePath });
+        await pool.query("UPDATE users SET profile_picture = ? WHERE id = ?", [filePath, studentId]);
+        res.json({ message: "Profile picture uploaded successfully", filePath });
     } catch (error) {
         console.error('Error uploading student profile picture:', error);
         res.status(500).json({ message: 'Server error while uploading picture.' });

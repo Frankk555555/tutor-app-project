@@ -60,7 +60,7 @@ const TutorProfilePage = () => {
     if (!tutor) return <p>ไม่พบข้อมูลติวเตอร์</p>;
 
     const imageUrl = tutor.profile_picture 
-        ? `${API_BASE_URL}/${tutor.profile_picture}` 
+        ? (tutor.profile_picture.startsWith('http') ? tutor.profile_picture : `${API_BASE_URL}/${tutor.profile_picture}`)
         : 'https://via.placeholder.com/150';
 
     return (
