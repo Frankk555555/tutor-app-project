@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker'; // 1. Import DatePicker
 import { setHours, setMinutes, parseISO, format } from 'date-fns'; // 2. Import ตัวช่วยจาก date-fns
 import th from 'date-fns/locale/th';
+import Swal from 'sweetalert2';
 
 
 registerLocale('th', th);
@@ -51,7 +52,12 @@ const BookingForm = ({ tutor, onBook }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!selectedDate) {
-            alert('กรุณาเลือกวันและเวลาที่ต้องการนัดหมาย');
+            Swal.fire({
+                title: 'ข้อมูลไม่ครบถ้วน',
+                text: 'กรุณาเลือกวันและเวลาที่ต้องการนัดหมาย',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6'
+            });
             return;
         }
         // 6. ส่งข้อมูล `selectedDate` ที่เป็น Date object กลับไป

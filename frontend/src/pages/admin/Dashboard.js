@@ -4,6 +4,7 @@ import Modal from '../../components/Modal';
 import Spinner from '../../components/Spinner';
 import './AdminDashboard.css';
 import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 
 const statusLabels = {
     pending: 'รอดำเนินการ',
@@ -69,7 +70,18 @@ const AdminDashboard = () => {
     }, [appointmentFilter]);
 
     const handleDeleteUser = async (userId) => {
-        if (!window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้นี้?')) return;
+        const result = await Swal.fire({
+            title: 'ยืนยันการลบ',
+            text: 'คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้นี้?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'ใช่, ลบเลย',
+            cancelButtonText: 'ยกเลิก'
+        });
+
+        if (!result.isConfirmed) return;
 
         setDeletingUserId(userId);
         try {

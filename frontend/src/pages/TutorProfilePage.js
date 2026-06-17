@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import api from '../services/api';
 import Modal from '../components/Modal';
 import BookingForm from '../components/BookingForm';
+import Swal from 'sweetalert2';
 import './TutorProfilePage.css';
 import Spinner from '../components/Spinner';
 
@@ -37,10 +38,20 @@ const TutorProfilePage = () => {
     const handleBookAppointment = async (details) => {
         try {
             await api.createAppointment({ tutorId: tutor.id, ...details });
-            alert('ส่งคำขอนัดหมายสำเร็จ!');
+            Swal.fire({
+                title: 'สำเร็จ!',
+                text: 'ส่งคำขอนัดหมายสำเร็จ!',
+                icon: 'success',
+                confirmButtonColor: '#3085d6'
+            });
             handleCloseModal();
         } catch (error) {
-            alert('เกิดข้อผิดพลาดในการนัดหมาย');
+            Swal.fire({
+                title: 'เกิดข้อผิดพลาด',
+                text: 'ไม่สามารถนัดหมายได้ กรุณาลองใหม่อีกครั้ง',
+                icon: 'error',
+                confirmButtonColor: '#d33'
+            });
         }
     };
 

@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import "./TutorDashboard.css";
 import Spinner from "../../components/Spinner";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom'; // <-- [เพิ่ม] Import Link
 
 
@@ -112,7 +113,18 @@ const TutorDashboard = () => {
     };
 
     const handleDeleteAvailability = async (availabilityId) => {
-        if (window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเวลานี้?')) {
+        const result = await Swal.fire({
+            title: 'ยืนยันการลบ',
+            text: 'คุณแน่ใจหรือไม่ว่าต้องการลบช่วงเวลานี้?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'ใช่, ลบเลย',
+            cancelButtonText: 'ยกเลิก'
+        });
+
+        if (result.isConfirmed) {
             try {
                 await api.deleteTutorAvailability(availabilityId);
                 setAvailability(availability.filter(slot => slot.id !== availabilityId));
