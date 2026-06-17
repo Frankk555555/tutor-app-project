@@ -2,7 +2,7 @@
   background: #fff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   gap: 15px;
   align-items: center;
@@ -12,7 +12,8 @@
 .filter-group {
   display: flex;
   gap: 15px;
-  flex-grow: 1;
+  flex-grow: 1; /* ทำให้กลุ่มของ input ขยายเต็มพื้นที่ */
+  align-items: center;
 }
 
 .filter-group select,
@@ -23,17 +24,20 @@
   font-size: 1rem;
 }
 
-@media (max-width: 768px) {
+/* --- [เพิ่ม] สไตล์สำหรับช่องค้นหาหลัก --- */
+.search-input-main {
+  flex-grow: 1; /* ทำให้ช่องค้นหานี้ขยายเต็มพื้นที่ที่เหลือ */
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 992px) {
   .filter-form {
-    flex-direction: column; /* เปลี่ยนฟอร์มเป็นแนวตั้ง */
-    align-items: stretch; /* ทำให้ input ขยายเต็มความกว้าง */
+    flex-direction: column;
+    align-items: stretch;
   }
   .filter-group {
     flex-direction: column;
     width: 100%;
-  }
-  .tutor-grid {
-    grid-template-columns: 1fr; /* ทำให้การ์ดแสดงผลทีละ 1 อัน */
+    align-items: stretch;
   }
 }
-

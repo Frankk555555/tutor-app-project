@@ -7,9 +7,17 @@ exports.getAllTutors = async (req, res) => {
     let query = `
         SELECT DISTINCT 
             u.id, u.first_name, u.last_name, u.profile_picture, 
-            tp.bio, tp.education, tp.hourly_rate
+            tp.bio, tp.education, tp.hourly_rate,
+            COALESCE(avg_rev.avg_rating, 0) AS average_rating,
+            COALESCE(avg_rev.review_count, 0) AS review_count,
+            1 AS is_verified
         FROM users u
         JOIN tutor_profiles tp ON u.id = tp.user_id
+        LEFT JOIN (
+            SELECT tutor_user_id, AVG(rating) AS avg_rating, COUNT(id) AS review_count
+            FROM reviews
+            GROUP BY tutor_user_id
+        ) avg_rev ON u.id = avg_rev.tutor_user_id
     `;
     const joins = new Set(); // ใช้ Set เพื่อป้องกันการ JOIN ซ้ำซ้อน
     const conditions = [`u.role = 'tutor'`, `u.status = 'active'`];
@@ -76,7 +84,8 @@ exports.getTutorById = async (req, res) => {
     const { id } = req.params;
     try {
         const [tutorInfo] = await pool.query(
-            `SELECT u.id, u.first_name, u.last_name, u.profile_picture, tp.bio, tp.education, tp.hourly_rate
+            `SELECT u.id, u.first_name, u.last_name, u.profile_picture, tp.bio, tp.education, tp.hourly_rate,
+                    1 AS is_verified
              FROM users u
              JOIN tutor_profiles tp ON u.id = tp.user_id
              WHERE u.id = ? AND u.role = 'tutor'`,
@@ -357,9 +366,17 @@ exports.deleteMyAvailability = async (req, res) => {
 exports.getFeaturedTutors = async (req, res) => {
     try {
         const [tutors] = await pool.query(`
-            SELECT u.id, u.first_name, u.last_name, u.profile_picture, tp.bio, tp.hourly_rate
+            SELECT u.id, u.first_name, u.last_name, u.profile_picture, tp.bio, tp.hourly_rate,
+                   COALESCE(avg_rev.avg_rating, 0) AS average_rating,
+                   COALESCE(avg_rev.review_count, 0) AS review_count,
+                   1 AS is_verified
             FROM users u
             JOIN tutor_profiles tp ON u.id = tp.user_id
+            LEFT JOIN (
+                SELECT tutor_user_id, AVG(rating) AS avg_rating, COUNT(id) AS review_count
+                FROM reviews
+                GROUP BY tutor_user_id
+            ) avg_rev ON u.id = avg_rev.tutor_user_id
             WHERE u.role = 'tutor' AND u.status = 'active'
             ORDER BY u.id DESC 
             LIMIT 4

@@ -1,320 +1,597 @@
-.tutor-dashboard {
-    max-width: 800px;
-    margin: 0 auto;
+/* ==========================================================================
+   TUTOR DASHBOARD DESIGN SYSTEM (The Supportive Academy)
+   ========================================================================== */
+
+:root {
+  --color-primary: #3498db;
+  --color-primary-hover: #2980b9;
+  --color-accent: #27ae60;
+  --color-ink: #2c3e50;
+  --color-bg: #f4f7f6;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-border-focus: #3498db;
+  
+  /* Status Colors (Soft tints) */
+  --status-pending-bg: #fffbeb;
+  --status-pending-border: #fef3c7;
+  --status-pending-text: #b45309;
+
+  --status-approved-bg: #f0fdf4;
+  --status-approved-border: #dcfce7;
+  --status-approved-text: #15803d;
+
+  --status-rejected-bg: #fef2f2;
+  --status-rejected-border: #fee2e2;
+  --status-rejected-text: #b91c1c;
+
+  --status-completed-bg: #f8fafc;
+  --status-completed-border: #e2e8f0;
+  --status-completed-text: #475569;
 }
 
+.tutor-dashboard {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0 60px;
+}
+
+/* Page Heading */
+.tutor-dashboard h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  color: var(--color-ink);
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+/* ==========================================================================
+   TAB CONTROLLER (Pill Segmented Switcher)
+   ========================================================================== */
+.tab-container {
+  display: flex;
+  background-color: rgba(44, 62, 80, 0.06);
+  padding: 4px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  gap: 4px;
+}
+
+.tab-button {
+  flex: 1;
+  text-align: center;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #64748b;
+  border-radius: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1.5;
+}
+
+.tab-button:hover {
+  color: var(--color-ink);
+}
+
+.tab-button.active {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   DASHBOARD CARDS & SECTIONS
+   ========================================================================== */
 .dashboard-section {
-    background: #fff;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
+  background: var(--color-surface);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+  border: 1px solid #f1f5f9;
 }
 
 .dashboard-section h3 {
-    margin-top: 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.form-group textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.message {
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #e2f0d9;
-    color: #3c763d;
-    border: 1px solid #d6e9c6;
-    border-radius: 4px;
-    text-align: center;
-}
-
-.subject-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.subject-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 8px;
-}
-
-.delete-btn {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.delete-btn:hover {
-    background: #c0392b;
-}
-
-.add-subject-form {
-    display: flex;
-    gap: 10px;
-}
-.add-subject-form input {
-    flex-grow: 1;
-}
-
-/* === Appointment List Styles === */
-
-/* 1. สไตล์สำหรับกล่อง list ทั้งหมด */
-.appointment-list {
-  list-style: none; /* เอารูปจุดหน้า list item ออก */
-  padding: 0;
-  margin-top: 20px;
-}
-
-/* 2. สไตล์สำหรับแต่ละรายการนัดหมาย (list item) */
-.appointment-item {
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 15px 20px;
-  margin-bottom: 12px;
-  display: flex; /* จัดเรียงข้อมูลข้างในแนวนอน */
-  justify-content: space-between; /* ให้ข้อมูลอยู่ซ้ายสุด และปุ่มอยู่ขวาสุด */
-  align-items: center; /* ทำให้ข้อมูลและปุ่มอยู่กึ่งกลางแนวตั้ง */
-  transition: box-shadow 0.2s ease-in-out;
-}
-
-.appointment-item:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* เพิ่มเงาเมื่อเมาส์ชี้ */
-}
-
-/* 3. สไตล์สำหรับแถบสีด้านซ้ายเพื่อบอกสถานะ */
-.appointment-item.status-pending {
-  border-left: 5px solid #ffc107; /* สีเหลืองสำหรับ "รอดำเนินการ" */
-}
-
-.appointment-item.status-approved {
-  border-left: 5px solid #28a745; /* สีเขียวสำหรับ "ตอบรับแล้ว" */
-}
-
-.appointment-item.status-rejected {
-  border-left: 5px solid #dc3545; /* สีแดงสำหรับ "ปฏิเสธ" */
-}
-
-.appointment-item.status-completed {
-  border-left: 5px solid #6c757d; /* สีเทาสำหรับ "เสร็จสิ้น" */
-}
-
-/* 4. สไตล์สำหรับกล่องที่เก็บปุ่ม (Approve/Reject) */
-.appointment-actions {
-  display: flex;
-  gap: 10px; /* ระยะห่างระหว่างปุ่ม */
-}
-
-/* 5. สไตล์สำหรับปุ่ม "ตอบรับ" */
-.btn-approve {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-approve:hover {
-  background-color: #218838;
-}
-
-/* 6. สไตล์สำหรับปุ่ม "ปฏิเสธ" */
-.btn-reject {
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.btn-reject:hover {
-  background-color: #c82333;
-}
-
-.btn-complete {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-.btn-complete:hover {
-  background-color: #0069d9;
-}
-
-/* === Availability Styles === */
-.availability-form {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap; /* ทำให้ขึ้นบรรทัดใหม่ได้บนจอเล็ก */
-}
-.availability-form select,
-.availability-form input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.availability-list {
-  list-style: none;
-  padding: 0;
-}
-.availability-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #f9f9f9;
-  padding: 10px 15px;
-  border-radius: 5px;
-  margin-bottom: 8px;
-}
-.btn-delete-slot {
-  background: none;
-  border: 1px solid #dc3545;
-  color: #dc3545;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-.btn-delete-slot:hover {
-  background: #dc3545;
-  color: white;
-}
-
-/* === Recurring Availability Form Styles === */
-.recurring-form {
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
-  padding: 20px;
-  border-radius: 8px;
+  margin-top: 0;
+  color: var(--color-ink);
+  font-size: 1.4rem;
+  font-weight: 500;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 15px;
   margin-bottom: 25px;
 }
 
-.recurring-form h4 {
-  margin-top: 0;
-  margin-bottom: 15px;
+/* ==========================================================================
+   FORM CONTROLS & UTILITIES
+   ========================================================================== */
+.form-group {
+  margin-bottom: 20px;
 }
 
-.recurring-form label {
+.form-group label {
+  display: block;
   font-weight: 500;
-  margin-left: 10px;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
 }
 
-.btn.btn-secondary {
-  background-color: rgb(74, 149, 230);
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group textarea,
+.availability-form select,
+.availability-form input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  transition: all 0.2s ease;
+  line-height: 1.5;
 }
-.btn.btn-secondary:hover {
-  background-color: rgb(67, 124, 237);
+
+.form-group input:focus,
+.form-group textarea:focus,
+.availability-form select:focus,
+.availability-form input:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
 }
-.dashboard-section .btn-save {
-  background-color: rgb(74, 149, 230); 
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
 }
-.dashboard-section .btn-save:hover {
-  background-color: rgb(67, 124, 237); 
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.btn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  background-color: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   APPOINTMENT CARDS (Modern List Layout)
+   ========================================================================== */
+.appointment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 15px;
+}
+
+.appointment-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 20px;
+}
+
+.appointment-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Soft status styling */
+.appointment-item.status-pending {
+  background-color: var(--status-pending-bg);
+  border-color: var(--status-pending-border);
+}
+
+.appointment-item.status-approved {
+  background-color: var(--status-approved-bg);
+  border-color: var(--status-approved-border);
+}
+
+.appointment-item.status-rejected {
+  background-color: var(--status-rejected-bg);
+  border-color: var(--status-rejected-border);
+}
+
+.appointment-item.status-completed {
+  background-color: var(--status-completed-bg);
+  border-color: var(--status-completed-border);
+}
+
+/* Inner card text columns */
+.appointment-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.student-info-row {
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  margin-bottom: 2px;
+}
+
+.student-profile-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.student-profile-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+.appointment-detail {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+/* Premium Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.status-badge.status-pending {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: var(--status-pending-text);
+}
+
+.status-badge.status-approved {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--status-approved-text);
+}
+
+.status-badge.status-rejected {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: var(--status-rejected-text);
+}
+
+.status-badge.status-completed {
+  background-color: rgba(100, 116, 139, 0.15);
+  color: var(--status-completed-text);
+}
+
+/* Actions */
+.appointment-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-approve,
+.btn-reject,
+.btn-complete {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-approve {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.btn-approve:hover {
+  background-color: #219653;
+  transform: translateY(-1px);
+}
+
+.btn-reject {
+  background-color: #e74c3c;
+  color: var(--color-surface);
+}
+
+.btn-reject:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+}
+
+.btn-complete {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
+.btn-complete:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   AVAILABILITY LAYOUT
+   ========================================================================== */
+.availability-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  align-items: end;
+  margin-bottom: 25px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.availability-form h4 {
+  grid-column: 1 / -1;
+  margin: 0 0 5px 0;
+  color: var(--color-ink);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.availability-form select,
+.availability-form input {
+  width: 100%;
+}
+
+.availability-form span {
+  display: none; /* remove raw time dash connector */
+}
+
+/* Specific styling for range grid */
+.date-range-group {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.date-range-group label {
+  grid-column: span 2;
+  margin-bottom: -5px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-ink);
+}
+
+.recurring-form .btn-secondary,
+.availability-form .btn-save {
+  grid-column: 1 / -1;
+  background-color: var(--color-primary);
+  width: 100%;
+  margin-top: 10px;
 }
 
 .divider {
   border: none;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #e2e8f0;
   margin: 30px 0;
 }
 
-/* === Tab Styles === */
-.tab-container {
-    display: flex;
-    border-bottom: 2px solid #eee;
-    margin-bottom: 20px;
+/* Availability slot list */
+.availability-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  padding: 0;
+  list-style: none;
 }
 
-.tab-button {
-    padding: 12px 25px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #535151;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s ease-in-out;
+.availability-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
 }
 
-.tab-button.active {
-    color: #3498db; /* สีของแท็บที่ถูกเลือก */
-    border-bottom: 3px solid #3498db;
+.availability-list li:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.tab-content {
-    /* เพิ่มพื้นที่ด้านบนเล็กน้อย */
-    padding-top: 10px;
+.availability-list span {
+  font-size: 0.95rem;
+  color: var(--color-ink);
 }
 
-.date-range-group {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* ระยะห่างระหว่าง label และ input */
-}
-
-.student-message {
-  font-style: italic;
-  color: #555;
-  background-color: #f8f9fa;
-  padding: 8px;
+.btn-delete-slot {
+  background: transparent;
+  border: 1px solid #fee2e2;
+  color: #ef4444;
   border-radius: 4px;
-  margin: 5px 0;
-  font-size: 0.9rem;
-}
-.student-profile-link {
-  margin-top: 5px;
-  color: #3498db;
-  text-decoration: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 0.8rem;
   font-weight: 500;
+  transition: all 0.2s ease;
 }
-.student-profile-link:hover {
-  text-decoration: underline;
+
+.btn-delete-slot:hover {
+  background: #ef4444;
+  color: var(--color-surface);
+  border-color: #ef4444;
+}
+
+/* ==========================================================================
+   PROFILE DETAILS SECTION
+   ========================================================================== */
+.profile-picture-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.profile-avatar {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-surface);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: #f1f5f9;
+}
+
+/* ==========================================================================
+   LEVELS & SUBJECTS MANAGEMENT CHIPS
+   ========================================================================== */
+.management-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+@media (max-width: 768px) {
+  .management-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+  min-height: 40px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: #f0f4f8;
+  color: var(--color-ink);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+}
+
+.chip:hover {
+  background-color: #e2e8f0;
+}
+
+.chip-delete-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  line-height: 1;
+  margin-left: 6px;
+  padding: 0 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.chip-delete-btn:hover {
+  color: #ef4444;
+}
+
+.no-data-text {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 0;
+  align-self: center;
+}
+
+/* ==========================================================================
+   RESPONSIVENESS RHYTHM
+   ========================================================================== */
+@media (max-width: 768px) {
+  .tutor-dashboard {
+    padding: 10px 15px 40px;
+  }
+  
+  .tutor-dashboard h2 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard-section {
+    padding: 20px;
+  }
+
+  .appointment-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .appointment-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .btn-approve,
+  .btn-reject,
+  .btn-complete {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .availability-form {
+    padding: 15px;
+  }
 }

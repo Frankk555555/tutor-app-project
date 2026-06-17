@@ -57,6 +57,11 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     padding: 20px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.tutor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 .tutor-card img {
     width: 100px;
@@ -67,10 +72,53 @@ body {
 }
 .tutor-card h3 {
     margin: 10px 0 5px;
+    color: #2c3e50;
 }
 .tutor-card .rate {
     color: #27ae60;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Verified Badge Styles */
+.verified-badge-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: rgba(52, 152, 219, 0.08);
+  color: #3498db;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(52, 152, 219, 0.15);
+}
+.verified-icon {
+  stroke-width: 3px;
+}
+
+/* Tutor Rating Styles */
+.tutor-rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 10px 0;
+}
+.stars-container {
+  display: inline-flex;
+  gap: 2px;
+}
+.rating-text {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  font-weight: 500;
 }
 
 /* Form Styles */

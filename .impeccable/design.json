@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-17T17:05:00Z",
+  "title": "Design System: Tutor Platform",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Beacon Blue", "canonical": "oklch(68.52% 0.17 243.6)" },
+      "primary-hover": { "role": "primary", "displayName": "Beacon Blue Hover", "canonical": "oklch(58.33% 0.176 244.6)" },
+      "accent": { "role": "accent", "displayName": "Achievement Green", "canonical": "oklch(67.14% 0.178 142.9)" },
+      "neutral-ink": { "role": "neutral", "displayName": "Deep Ink", "canonical": "oklch(31.85% 0.05 240.2)" },
+      "neutral-bg": { "role": "neutral", "displayName": "Soft Sage-White", "canonical": "oklch(96.34% 0.009 171.7)" },
+      "neutral-surface": { "role": "neutral", "displayName": "White Surface", "canonical": "oklch(100% 0 0)" },
+      "border": { "role": "neutral", "displayName": "Muted Gray", "canonical": "oklch(84.45% 0 0)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only." },
+      "headline": { "displayName": "Headline", "purpose": "Main page headers." },
+      "title": { "displayName": "Title", "purpose": "Card headers and section titles." },
+      "body": { "displayName": "Body", "purpose": "Description text, paragraphs, and form labels." },
+      "label": { "displayName": "Label", "purpose": "Subtext, tags, and small controls." }
+    },
+    "shadows": [
+      { "name": "card-rest", "value": "0 4px 6px rgba(0, 0, 0, 0.1)", "purpose": "Subtle elevation for cards." },
+      { "name": "card-hover", "value": "0 10px 30px rgba(0, 0, 0, 0.15)", "purpose": "Lifted elevation for hover states." }
+    ],
+    "motion": [
+      { "name": "transition-standard", "value": "0.3s ease", "purpose": "Default easing and duration for hover shifts." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "768px", "purpose": "Mobile breakpoint." },
+      { "name": "md", "value": "992px", "purpose": "Tablet breakpoint." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Standard action button with slightly rounded corners.",
+      "html": "<button class=\"ds-btn-primary\">ค้นหาติวเตอร์</button>",
+      "css": ".ds-btn-primary { background-color: #3498db; color: #ffffff; padding: 12px 24px; border: none; border-radius: 4px; font-family: 'Chakra Petch', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background-color 0.3s ease; } .ds-btn-primary:hover { background-color: #2980b9; }"
+    },
+    {
+      "name": "Hero CTA Button",
+      "kind": "button",
+      "refersTo": "button-cta",
+      "description": "Large pill button for main conversion funnel.",
+      "html": "<a class=\"ds-btn-cta\">เริ่มค้นหาติวเตอร์</a>",
+      "css": ".ds-btn-cta { background-color: #3498db; color: #ffffff; padding: 15px 40px; border-radius: 50px; text-decoration: none; display: inline-block; font-family: 'Chakra Petch', sans-serif; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); } .ds-btn-cta:hover { background-color: #2980b9; transform: translateY(-3px); }"
+    },
+    {
+      "name": "Tutor Card",
+      "kind": "card",
+      "refersTo": "card-tutor",
+      "description": "Interactive card displaying tutor details.",
+      "html": "<div class=\"ds-tutor-card\"><img src=\"https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop\" alt=\"Tutor\" /><h3>สมชาย ใจดี</h3><p>ติวเตอร์วิชาคณิตศาสตร์และวิทยาศาสตร์ ประสบการณ์สอน 5 ปี</p><p class=\"ds-rate\">฿350 / ชั่วโมง</p></div>",
+      "css": ".ds-tutor-card { background: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 20px; text-align: center; font-family: 'Chakra Petch', sans-serif; transition: transform 0.3s ease, box-shadow 0.3s ease; max-width: 280px; } .ds-tutor-card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; } .ds-tutor-card h3 { margin: 10px 0 5px; color: #2c3e50; font-size: 1.5rem; } .ds-tutor-card p { color: #666666; font-size: 1rem; line-height: 1.6; margin-bottom: 10px; } .ds-tutor-card .ds-rate { color: #27ae60; font-weight: bold; font-size: 1.1rem; } .ds-tutor-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); cursor: pointer; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Supportive Academy",
+    "overview": "\"The Supportive Academy\" visual framework provides a warm, encouraging, and highly legible learning environment for Thai students and tutors. By pairing structured layouts with clear focus cues, the system balances educational trustworthiness with modern accessibility. The visual interface prioritizes spacious interfaces to eliminate the cramped layout common to older tutoring directories, ensuring users feel guided rather than overwhelmed.",
+    "keyCharacteristics": [
+      "Clean Structure: Information is organized into distinct, well-padded cards and grids that flow logically.",
+      "Friendly & Legible Typography: High-contrast, friendly rounded-geometric font stacks suited for both English and Thai scripts.",
+      "Micro-Interactions: Direct user attention through soft, responsive translations and shadow lifts on hover."
+    ],
+    "rules": [
+      { "name": "The Rarity Rule", "body": "Beacon Blue is reserved strictly for primary actions, CTAs, and active states. It should occupy no more than 10% of any screen surface to preserve its focus-directing power.", "section": "colors" },
+      { "name": "The Thai Line Height Rule", "body": "All elements displaying Thai text must enforce a minimum line-height of 1.5 to prevent vertical overlap of vowel accents and sub-characters.", "section": "typography" },
+      { "name": "The Responsive Lift Rule", "body": "Any card or button utilizing a hover shadow must simultaneously apply a translation transform (translateY(-3px) to -10px) to align the visual shadow depth with physical height.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do maintain a minimum line-height of 1.5 on all body paragraphs to accommodate Thai vowels cleanly.",
+      "Do use white surfaces (#ffffff) for card containers to stand out cleanly against the Soft Sage-White (#f4f7f6) body background.",
+      "Do apply smooth CSS transitions (0.3s ease) on all interactive hover and focus events."
+    ],
+    "donts": [
+      "Don't use side-stripe borders (e.g. border-left: 4px solid #3498db) on cards or alerts to create decoration.",
+      "Don't use gradient text on headers. Keep titles solid Deep Ink (#2c3e50).",
+      "Don't use giant border-radii (greater than 12px) on rectangular cards or inputs. Cards should max out at 8px to 10px.",
+      "Don't allow long words or headings to overflow container boundaries on mobile; use clamp scales and word-break: break-word if necessary."
+    ]
+  }
+}

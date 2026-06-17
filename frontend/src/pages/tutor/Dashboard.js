@@ -9,6 +9,12 @@ import { Link } from 'react-router-dom'; // <-- [เพิ่ม] Import Link
 
 const API_BASE_URL = "http://localhost:5000";
 const recurringDaysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const statusTranslation = {
+    pending: "รอดำเนินการ",
+    approved: "ยืนยันแล้ว",
+    rejected: "ปฏิเสธ",
+    completed: "เสร็จสิ้น"
+};
 
 const TutorDashboard = () => {
     // --- State ---
@@ -234,26 +240,34 @@ const TutorDashboard = () => {
                         <div className="dashboard-section">
                             <h3>รายการนัดหมาย</h3>
                             {appointments.length === 0 ? <p>ยังไม่มีรายการนัดหมาย</p> : (
-                                <ul className="appointment-list">
+                                <div className="appointment-list">
                                     {appointments.map((app) => (
-                                        <li key={app.id} className={`appointment-item status-${app.status}`}>
-                                            <div>
-                                                <strong>นักเรียน:</strong> {app.student_first_name} {app.student_last_name} <br></br>
-                                                
-                                                <Link to={`/student/profile/${app.student_user_id}`} className="student-profile-link">
-                                                    {app.student_first_name} {app.student_last_name}
-                                                    <span className="view-profile-text"> (ดูโปรไฟล์นักเรียน)</span>
-                                                </Link>
-                                                <br></br>
-                                                <strong>วันที่:</strong> {new Date(app.appointment_time).toLocaleString('th-TH', {
-                                                    year: 'numeric',
-                                                    month: 'long',
-                                                    day: 'numeric',
-                                                    hour: '2-digit',
-                                                    minute: '2-digit'
-                                                })} <br />
-                                                <strong>ระยะเวลา:</strong> {app.duration} นาที <br />
-                                                <strong>สถานะ:</strong> <span className={`status-text status-${app.status}`}>{app.status}</span>
+                                        <div key={app.id} className={`appointment-item status-${app.status}`}>
+                                            <div className="appointment-info">
+                                                <div className="student-info-row">
+                                                    <strong>นักเรียน:</strong>{' '}
+                                                    <Link to={`/student/profile/${app.student_user_id}`} className="student-profile-link">
+                                                        {app.student_first_name} {app.student_last_name}
+                                                    </Link>
+                                                </div>
+                                                <div className="appointment-detail">
+                                                    <strong>วันที่:</strong> {new Date(app.appointment_time).toLocaleString('th-TH', {
+                                                        year: 'numeric',
+                                                        month: 'long',
+                                                        day: 'numeric',
+                                                        hour: '2-digit',
+                                                        minute: '2-digit'
+                                                    })}
+                                                </div>
+                                                <div className="appointment-detail">
+                                                    <strong>ระยะเวลา:</strong> {app.duration} นาที
+                                                </div>
+                                                <div className="status-container">
+                                                    <strong>สถานะ:</strong>{' '}
+                                                    <span className={`status-badge status-${app.status}`}>
+                                                        {statusTranslation[app.status] || app.status}
+                                                    </span>
+                                                </div>
                                             </div>
                                             <div className="appointment-actions">
                                                 {app.status === "pending" && (
@@ -266,9 +280,9 @@ const TutorDashboard = () => {
                                                     <button onClick={() => handleUpdateStatus(app.id, "completed")} className="btn-complete">เสร็จสิ้น</button>
                                                 )}
                                             </div>
-                                        </li>
+                                        </div>
                                     ))}
-                                </ul>
+                                </div>
                             )}
                         </div>
                         <div className="dashboard-section">
@@ -345,14 +359,22 @@ const TutorDashboard = () => {
                         <div className="management-container">
                             <div className="dashboard-section">
                                 <h3>ระดับชั้นที่สอน</h3>
-                                <ul className="subject-list">
+                                <div className="chips-container">
                                     {profileData.levels.map((level) => (
-                                        <li key={level.id}>
-                                            {level.name}
-                                            <button onClick={() => handleDeleteLevel(level.id)} className="delete-btn">ลบ</button>
-                                        </li>
+                                        <div key={level.id} className="chip">
+                                            <span>{level.name}</span>
+                                            <button 
+                                                type="button" 
+                                                onClick={() => handleDeleteLevel(level.id)} 
+                                                className="chip-delete-btn" 
+                                                aria-label={`ลบระดับชั้น ${level.name}`}
+                                            >
+                                                &times;
+                                            </button>
+                                        </div>
                                     ))}
-                                </ul>
+                                    {profileData.levels.length === 0 && <p className="no-data-text">ยังไม่มีการเพิ่มระดับชั้น</p>}
+                                </div>
                                 <form onSubmit={handleAddLevel} className="add-subject-form">
                                     <select value={selectedLevel} onChange={(e) => setSelectedLevel(e.target.value)}>
                                         <option value="">-- เลือกระดับชั้น --</option>
@@ -365,14 +387,22 @@ const TutorDashboard = () => {
                             </div>
                             <div className="dashboard-section">
                                 <h3>วิชาที่สอน</h3>
-                                <ul className="subject-list">
+                                <div className="chips-container">
                                     {profileData.subjects.map((subject) => (
-                                        <li key={subject.id}>
-                                            {subject.name}
-                                            <button onClick={() => handleDeleteSubject(subject.id)} className="delete-btn">ลบ</button>
-                                        </li>
+                                        <div key={subject.id} className="chip">
+                                            <span>{subject.name}</span>
+                                            <button 
+                                                type="button" 
+                                                onClick={() => handleDeleteSubject(subject.id)} 
+                                                className="chip-delete-btn" 
+                                                aria-label={`ลบวิชา ${subject.name}`}
+                                            >
+                                                &times;
+                                            </button>
+                                        </div>
                                     ))}
-                                </ul>
+                                    {profileData.subjects.length === 0 && <p className="no-data-text">ยังไม่มีการเพิ่มวิชา</p>}
+                                </div>
                                 <form onSubmit={handleAddSubject} className="add-subject-form">
                                     <input type="text" value={newSubject} onChange={(e) => setNewSubject(e.target.value)} placeholder="เช่น ฟิสิกส์ ม.ปลาย" />
                                     <button type="submit" className="btn">เพิ่มวิชา</button>

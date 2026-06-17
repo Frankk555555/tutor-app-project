@@ -23,3 +23,11 @@ yarn-error.log*
 
 # Misc
 .DS_Store
+
+# Local IDE/Agent Cache
+.vs/
+.gemini/
+.cursor/
+
+# Uploads
+/backend/uploads/
