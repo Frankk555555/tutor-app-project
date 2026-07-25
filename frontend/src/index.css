@@ -37,21 +37,21 @@
   --focus-ring: 0 0 0 3px oklch(52% calc(0.22 * var(--p-color-amount, 1)) 250 / 20%);
 
   /* Status tints */
-  --status-pending-bg: oklch(98% 0.05 75);
-  --status-pending-border: oklch(94% 0.08 75);
-  --status-pending-text: oklch(50% 0.12 75);
+  --status-pending-bg: #FEF3C7;
+  --status-pending-border: #FEF3C7;
+  --status-pending-text: #92400E;
 
-  --status-approved-bg: oklch(97% 0.04 145);
-  --status-approved-border: oklch(93% 0.08 145);
-  --status-approved-text: oklch(45% 0.12 145);
+  --status-approved-bg: #D1FAE5;
+  --status-approved-border: #D1FAE5;
+  --status-approved-text: #065F46;
 
-  --status-rejected-bg: oklch(97% 0.04 20);
-  --status-rejected-border: oklch(93% 0.08 20);
-  --status-rejected-text: oklch(45% 0.12 20);
+  --status-rejected-bg: #FEE2E2;
+  --status-rejected-border: #FEE2E2;
+  --status-rejected-text: #991B1B;
 
-  --status-completed-bg: oklch(98.5% calc(0.008 * var(--p-color-amount, 1)) 250);
-  --status-completed-border: oklch(92% calc(0.015 * var(--p-color-amount, 1)) 250);
-  --status-completed-text: oklch(50% calc(0.03 * var(--p-color-amount, 1)) 250);
+  --status-completed-bg: #DBEAFE;
+  --status-completed-border: #DBEAFE;
+  --status-completed-text: #1E40AF;
 
   --radius-sm: 4px;
   --radius-md: 8px;

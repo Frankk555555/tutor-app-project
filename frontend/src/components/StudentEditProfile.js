@@ -67,32 +67,38 @@ const StudentEditProfile = () => {
         : 'https://via.placeholder.com/150';
 
     return (
-        <>
+        <div className="profile-edit-container">
             <div className="dashboard-section profile-picture-section">
                 <h3>รูปโปรไฟล์</h3>
-                <img src={imageUrl} alt="Profile" className="profile-avatar" />
-                <form onSubmit={handlePictureUpload}>
+                <div className="profile-avatar-wrapper">
+                    <img src={imageUrl} alt="Profile" className="profile-avatar" />
+                </div>
+                <form onSubmit={handlePictureUpload} className="profile-upload-form">
                     <div className="form-group">
                         <label>เลือกรูปภาพใหม่</label>
-                        <input type="file" onChange={handleFileChange} accept="image/png, image/jpeg" />
+                        <input type="file" onChange={handleFileChange} accept="image/png, image/jpeg" className="file-input" />
                     </div>
-                    <button type="submit" className="btn" disabled={!selectedFile}>อัปโหลดรูป</button>
+                    <button type="submit" className="btn ds-btn-primary" disabled={!selectedFile}>อัปโหลดรูป</button>
                 </form>
             </div>
 
             <form onSubmit={handleSubmit} className="dashboard-section">
                 <h3>ข้อมูลส่วนตัว</h3>
-                <div className="form-group">
-                    <label htmlFor="first_name">ชื่อจริง</label>
-                    <input type="text" id="first_name" name="first_name" value={profile.first_name} onChange={handleChange} required />
+                <div className="form-row">
+                    <div className="form-group">
+                        <label htmlFor="first_name">ชื่อจริง</label>
+                        <input type="text" id="first_name" name="first_name" value={profile.first_name} onChange={handleChange} required className="ds-input-field" />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="last_name">นามสกุล</label>
+                        <input type="text" id="last_name" name="last_name" value={profile.last_name} onChange={handleChange} required className="ds-input-field" />
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="last_name">นามสกุล</label>
-                    <input type="text" id="last_name" name="last_name" value={profile.last_name} onChange={handleChange} required />
+                <div className="form-actions">
+                    <button type="submit" className="btn ds-btn-primary btn-save">บันทึกข้อมูล</button>
                 </div>
-                <button type="submit" className="btn btn-save">บันทึกข้อมูล</button>
             </form>
-        </>
+        </div>
     );
 };
 

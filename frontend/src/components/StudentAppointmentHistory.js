@@ -34,36 +34,44 @@ const StudentAppointmentHistory = ({ onOpenReviewModal }) => {
                 <ul className="appointment-list">
                     {appointments.map((app) => (
                         <li key={app.id} className={`appointment-item status-${app.status}`}>
-                            {/* ส่วนแสดงข้อมูลหลัก */}
-                            <div>
-                                <strong>ติวเตอร์: {app.tutor_first_name} {app.tutor_last_name}</strong>
-                                <br />
-                                <strong>เวลา:</strong>{' '}
-                                {new Date(app.appointment_time).toLocaleString('th-TH', {
-                                    year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
-                                })}
-                                <br />
-                                <strong>ระยะเวลา:</strong> {app.duration} นาที
+                            <div className="appointment-details">
+                                <h4 className="appointment-tutor-name">
+                                    ติวเตอร์: {app.tutor_first_name} {app.tutor_last_name}
+                                </h4>
+                                <div className="appointment-meta">
+                                    <span className="appointment-time">
+                                        <i className="icon-calendar"></i>{' '}
+                                        {new Date(app.appointment_time).toLocaleString('th-TH', {
+                                            year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit',
+                                        })}
+                                    </span>
+                                    <span className="appointment-duration">
+                                        <i className="icon-clock"></i> ระยะเวลา: {app.duration} นาที
+                                    </span>
+                                </div>
                             </div>
 
-                            {/* ส่วนแสดงสถานะและปุ่ม */}
                             <div className="appointment-actions">
-                                <div className='status-price-group'>
-                                    <strong>สถานะ:</strong>{' '}
-                                    <span className={`status-text status-${app.status}`}>{app.status}</span>
-                                    <br />
-                                    <strong>ราคา:</strong> {app.total_price} บาท
+                                <div className="appointment-price-container">
+                                    <span className="action-label">ราคา</span>
+                                    <span className="appointment-price">฿{app.total_price}</span>
                                 </div>
                                 
-                                {/* ปุ่ม "ให้คะแนน" จะแสดงผลตามเงื่อนไข */}
-                                {app.status === 'completed' && !app.has_been_reviewed && (
-                                    <button
-                                        onClick={() => onOpenReviewModal(app)}
-                                        className="btn-review"
-                                    >
-                                        ให้คะแนน
-                                    </button>
-                                )}
+                                <div className="appointment-status-container">
+                                    <span className="action-label">สถานะ</span>
+                                    <div className="status-and-button">
+                                        <span className={`status-text status-${app.status}`}>{app.status}</span>
+                                        {/* ปุ่ม "ให้คะแนน" จะแสดงผลตามเงื่อนไข */}
+                                        {app.status === 'completed' && !app.has_been_reviewed && (
+                                            <button
+                                                onClick={() => onOpenReviewModal(app)}
+                                                className="btn-review"
+                                            >
+                                                ให้คะแนน
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     ))}

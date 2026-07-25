@@ -44,7 +44,10 @@ const StudentDashboard = () => {
 
     return (
         <div className="student-dashboard">
-            <h2>แดชบอร์ดของ {user?.name || 'นักเรียน'}</h2>
+            <div className="dashboard-header">
+                <h2>ยินดีต้อนรับ, {user?.name || 'นักเรียน'}</h2>
+                <p className="dashboard-subtitle">จัดการการนัดหมายและข้อมูลส่วนตัวของคุณได้ที่นี่</p>
+            </div>
             
             <div className="tab-container">
                 <button
