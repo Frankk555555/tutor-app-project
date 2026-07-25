@@ -14,7 +14,7 @@ const LoginPage = () => {
     setError("");
     try {
       const response = await api.login({ email, password });
-      localStorage.setItem("token", response.data.token);
+      // Token ถูกเก็บใน httpOnly cookie อัตโนมัติแล้ว ไม่ต้องเก็บใน localStorage
       localStorage.setItem("user", JSON.stringify(response.data));
 
       if (response.data.role === "admin" || response.data.role === "tutor") {

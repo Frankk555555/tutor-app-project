@@ -8,26 +8,8 @@ const apiClient = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true, // ส่ง cookie อัตโนมัติในทุก request
 });
-// Interceptor สำหรับแนบ Token ในทุกๆ Request
-apiClient.interceptors.request.use(
-  (config) => {
-    // 1. ดึง token ที่เก็บไว้ใน localStorage
-    const token = localStorage.getItem("token");
-
-    // 2. ถ้ามี token, ให้แนบเข้าไปใน Header ของ Request
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-
-    // 3. ส่ง Request ที่มี token แล้วออกไป
-    return config;
-  },
-  (error) => {
-    // หากเกิดข้อผิดพลาด ให้ส่ง error ออกไป
-    return Promise.reject(error);
-  }
-);
 
 // --- Object ที่รวมฟังก์ชัน API ทั้งหมด ---
 const apiService = {
@@ -37,6 +19,9 @@ const apiService = {
   },
   register(userData) {
     return apiClient.post("/auth/register", userData);
+  },
+  logout() {
+    return apiClient.post("/auth/logout");
   },
 
   // Tutors (Public)

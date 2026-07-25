@@ -1,15 +1,20 @@
 const jwt = require('jsonwebtoken');
 
-// ฟังก์ชันเดิม (ไม่ต้องแก้)
+// ฟังก์ชันหลัก: อ่าน Token จาก httpOnly cookie ก่อน, fallback เป็น Authorization header
 const authMiddleware = (req, res, next) => {
-    const authHeader = req.header('Authorization');
-    if (!authHeader) {
-        return res.status(401).json({ message: 'Access denied. No token provided.' });
+    // 1. ลองอ่านจาก cookie ก่อน (วิธีหลัก)
+    let token = req.cookies?.token;
+
+    // 2. ถ้าไม่มี cookie ให้ลอง fallback จาก Authorization header (สำหรับ Postman/API tools)
+    if (!token) {
+        const authHeader = req.header('Authorization');
+        if (authHeader) {
+            token = authHeader.replace('Bearer ', '');
+        }
     }
 
-    const token = authHeader.replace('Bearer ', '');
     if (!token) {
-        return res.status(401).json({ message: 'Access denied. Malformed token.' });
+        return res.status(401).json({ message: 'Access denied. No token provided.' });
     }
     
     try {
@@ -17,7 +22,7 @@ const authMiddleware = (req, res, next) => {
         req.user = decoded; // { userId: 1, role: 'student' }
         next();
     } catch (ex) {
-        res.status(400).json({ message: 'Invalid token.' });
+        res.status(401).json({ message: 'Invalid or expired token.' });
     }
 };
 

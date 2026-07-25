@@ -2,6 +2,17 @@ const pool = require('../models/db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
+// ตั้งค่า Cookie options สำหรับ JWT token
+const cookieOptions = {
+    httpOnly: true,        // JavaScript ฝั่ง client เข้าถึงไม่ได้ (ป้องกัน XSS)
+    secure: isProduction,  // ใช้ HTTPS เท่านั้นใน production
+    sameSite: isProduction ? 'strict' : 'lax', // ป้องกัน CSRF
+    maxAge: 24 * 60 * 60 * 1000, // 1 วัน (มิลลิวินาที)
+    path: '/',
+};
+
 exports.register = async (req, res) => {
     const { email, password, firstName, lastName, role } = req.body;
 
@@ -48,10 +59,25 @@ exports.login = async (req, res) => {
             { expiresIn: '1d' }
         );
 
-        res.json({ token, role: user.role, userId: user.id, name: user.first_name });
+        // ส่ง JWT ผ่าน httpOnly cookie แทนการส่งใน body
+        res.cookie('token', token, cookieOptions);
+
+        // ส่งข้อมูลที่ไม่ใช่ความลับกลับไปเพื่อให้ Frontend ใช้แสดง UI
+        res.json({ role: user.role, userId: user.id, name: user.first_name });
 
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
     }
 };
+
+exports.logout = (req, res) => {
+    // เคลียร์ cookie โดยตั้งค่าเหมือนกัน (path, domain ต้องตรง)
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: isProduction,
+        sameSite: isProduction ? 'strict' : 'lax',
+        path: '/',
+    });
+    res.json({ message: 'Logged out successfully' });
+};

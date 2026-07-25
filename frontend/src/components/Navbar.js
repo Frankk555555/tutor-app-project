@@ -1,14 +1,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import NotificationBell from "./NotificationBell";
+import api from "../services/api";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await api.logout(); // เคลียร์ httpOnly cookie ที่ server
+    } catch (err) {
+      console.error('Logout error:', err);
+    }
     localStorage.removeItem("user");
-    localStorage.removeItem("token");
     navigate("/login");
     window.location.reload();
   };

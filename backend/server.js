@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const path = require('path');
 const authRoutes = require('./routes/authRoutes');
@@ -11,14 +12,22 @@ const subjectRoutes = require('./routes/subjectRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const levelRoutes = require('./routes/levelRoutes');
+const { apiLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true, // อนุญาตให้ส่ง cookie ข้าม origin
+}));
 app.use(express.json()); // for parsing application/json
+app.use(cookieParser()); // สำหรับอ่าน cookie จาก request
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// ใช้ apiLimiter กับเส้นทางที่ขึ้นต้นด้วย /api ทั้งหมดเพื่อป้องกัน DDoS/Flood
+app.use('/api/', apiLimiter);
 
 // Routes
 app.use('/api/auth', authRoutes);
