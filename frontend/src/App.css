@@ -195,24 +195,40 @@ body {
 
 /* --- Responsive Styles --- */
 
+/* สำหรับอุปกรณ์ Touch (มือถือ/แท็บเล็ต) */
+@media (pointer: coarse) {
+  .btn {
+    padding: 14px; /* ขยายขนาดปุ่มให้กดง่ายขึ้น (Min 44px) */
+  }
+  .form-group input, .form-group select, .date-picker-input {
+    padding: 14px 10px; /* ขยายขนาดช่องกรอกให้กดง่ายขึ้น */
+  }
+}
+
 /* เมื่อหน้าจอมีความกว้างน้อยกว่า 768px */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column; /* เปลี่ยนจากแนวนอนเป็นแนวตั้ง */
-    align-items: flex-start; /* จัดชิดซ้าย */
+    flex-direction: column;
+    align-items: center; /* จัดให้อยู่ตรงกลางบนมือถือจะดูสวยกว่า */
     padding: 1rem;
   }
   .nav-links {
     margin-top: 1rem;
     width: 100%;
-    flex-direction: column; /* ทำให้เมนูเรียงเป็นแนวตั้ง */
+    flex-direction: column;
     gap: 0.5rem;
+    padding: 0;
   }
   .nav-links li {
     width: 100%;
     text-align: center;
     background: var(--color-surface-subtle);
-    padding: 10px 0;
-    border-radius: 5px;
+    padding: 14px 0; /* เพิ่มพื้นที่กดให้ง่ายขึ้น */
+    border-radius: 8px;
+  }
+  .nav-links a, .nav-links button {
+    display: block;
+    width: 100%;
+    padding: 14px 0; /* กระจายพื้นที่กดให้เต็ม Li */
   }
 }

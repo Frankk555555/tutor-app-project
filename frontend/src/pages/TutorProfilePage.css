@@ -132,3 +132,33 @@
   font-size: 0.8rem;
   color: var(--color-text-muted);
 }
+
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .profile-header img {
+        width: 120px; /* ลดขนาดรูปโปรไฟล์ลงนิดหน่อยบนมือถือ */
+        height: 120px;
+    }
+    
+    .profile-action-btn {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .profile-details .detail-section {
+        text-align: center;
+    }
+    
+    .subjects-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

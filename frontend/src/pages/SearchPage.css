@@ -25,6 +25,7 @@
   font-family: inherit;
   background-color: var(--color-surface);
   color: var(--color-ink);
+  box-sizing: border-box;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -41,6 +42,13 @@
 }
 
 /* --- Responsive Styles --- */
+@media (pointer: coarse) {
+  .filter-group select,
+  .filter-group input {
+    padding: 14px 10px; /* ขยายเป้าหมายการสัมผัส */
+  }
+}
+
 @media (max-width: 992px) {
   .filter-form {
     flex-direction: column;
@@ -50,5 +58,9 @@
     flex-direction: column;
     width: 100%;
     align-items: stretch;
+  }
+  .filter-group select,
+  .filter-group input {
+    width: 100%; /* ให้เต็มความกว้าง */
   }
 }
